@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanprant Dry Cleaners</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            font-size: 1.2em;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .intro {
+            margin-bottom: 40px;
+        }
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#order">Place Order</a>
+</nav>
+
+<div class="container" id="home">
+    <div class="intro">
+        <h1>Sanprant Dry Cleaners</h1>
+        <p>Your one-stop solution for clothes ironing and polishing. Place your order below and we will take care of the rest!</p>
+    </div>
+</div>
+
+<div class="container" id="order">
+    <h2>Place Your Order</h2>
+    <form id="orderForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="service">Select Service:</label>
+        <select id="service" name="service" required>
+            <option value="">-- Select Service --</option>
+            <option value="Clothes Ironing">Clothes Ironing</option>
+            <option value="Clothes Polishing">Clothes Polishing</option>
+        </select>
+
+        <input type="submit" value="Place Order">
+    </form>
+</div>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+    })();
+
+    document.getElementById('orderForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+            .then(function() {
+                alert('Your order has been placed!');
+            }, function(error) {
+                alert('Failed to place order. Please try again.');
+            });
+    });
+</script>
+
+</body>
+</html>
